@@ -8,6 +8,7 @@ export const safelist = [
   "text-gray-500",
   "bg-brand-500",
   "bg-gray-400",
+  "bg-accent-600",
 ];
 export const theme = {
   extend: {
@@ -23,6 +24,18 @@ export const theme = {
         700: "#15803d",
         800: "#166534",
         900: "#14532d",
+      },
+      accent: {
+        50: "#fff1f2",
+        100: "#ffe4e6",
+        200: "#fecdd3",
+        300: "#fda4af",
+        400: "#fb7185",
+        500: "#f43f5e",
+        600: "#e11d48",
+        700: "#be123c",
+        800: "#9f1239",
+        900: "#881337",
       },
       whatsapp: "#25d366",
       "whatsapp-dark": "#128c7e",

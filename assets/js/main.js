@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     badge.classList.toggle("text-brand-700", open);
     badge.classList.toggle("bg-gray-100", !open);
     badge.classList.toggle("text-gray-500", !open);
-    dot.classList.toggle("bg-brand-500", open);
+    dot.classList.toggle("bg-accent-600", open);
     dot.classList.toggle("animate-pulse", open);
     dot.classList.toggle("bg-gray-400", !open);
     text.textContent = open ? "Aberto agora" : "Fechado no momento";
