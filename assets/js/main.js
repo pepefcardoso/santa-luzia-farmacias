@@ -107,4 +107,58 @@ document.addEventListener("DOMContentLoaded", () => {
         .join("");
     }
   });
+
+  if (typeof TESTIMONIALS !== "undefined" && TESTIMONIALS.length) {
+    const UNIT_LABEL = { 1: "Unidade KM 60", 2: "Unidade Morrotes" };
+    const track = document.getElementById("testimonial-carousel");
+    const dotsWrap = document.getElementById("testimonial-dots");
+
+    if (track && dotsWrap) {
+      track.innerHTML = `<div id="testimonial-track" class="flex transition-transform duration-300">
+        ${TESTIMONIALS.map(
+          (
+            t,
+          ) => `<div class="w-full shrink-0 bg-brand-50 rounded-2xl p-5 border border-brand-100 text-left">
+            <div class="text-brand-500 text-sm mb-1">${"★".repeat(t.rating)}${"☆".repeat(5 - t.rating)}</div>
+            ${t.text ? `<p class="text-sm text-ink-muted mb-3">${t.text}</p>` : ""}
+            <p class="text-xs font-bold text-brand-700">${t.name}</p>
+            <p class="text-xs text-ink-muted">${UNIT_LABEL[t.unit] || ""}</p>
+          </div>`,
+        ).join("")}
+      </div>`;
+
+      dotsWrap.innerHTML = TESTIMONIALS.map(
+        (_, i) =>
+          `<button class="w-2 h-2 rounded-full bg-brand-200 testimonial-dot" data-index="${i}" aria-label="Avaliação ${i + 1}"></button>`,
+      ).join("");
+
+      const slides = track.querySelectorAll("#testimonial-track > div");
+      const dots = dotsWrap.querySelectorAll(".testimonial-dot");
+      const slideTrack = document.getElementById("testimonial-track");
+      let current = 0;
+
+      function goTo(i) {
+        current = (i + TESTIMONIALS.length) % TESTIMONIALS.length;
+        slideTrack.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, idx) =>
+          d.classList.toggle("bg-brand-600", idx === current),
+        );
+        dots.forEach((d, idx) =>
+          d.classList.toggle("bg-brand-200", idx !== current),
+        );
+      }
+
+      dots.forEach((d) =>
+        d.addEventListener("click", () => goTo(Number(d.dataset.index))),
+      );
+
+      let auto = setInterval(() => goTo(current + 1), 5000);
+      track.addEventListener("mouseenter", () => clearInterval(auto));
+      track.addEventListener("mouseleave", () => {
+        auto = setInterval(() => goTo(current + 1), 5000);
+      });
+
+      goTo(0);
+    }
+  }
 });

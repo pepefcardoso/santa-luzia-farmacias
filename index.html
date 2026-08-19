@@ -530,56 +530,19 @@
     </section>
 
     <section class="py-14 bg-white px-4 sm:px-6 text-center">
-      <div class="inline-flex items-center gap-2 mb-4">
-        <svg
-          class="w-5 h-5 text-brand-500"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path
-            d="M12 2l2.9 6.6 7.1.6-5.4 4.6 1.7 7-6.3-3.9L5.7 21l1.7-7L2 9.2l7.1-.6L12 2z"
-          />
-        </svg>
-        <svg
-          class="w-5 h-5 text-brand-500"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path
-            d="M12 2l2.9 6.6 7.1.6-5.4 4.6 1.7 7-6.3-3.9L5.7 21l1.7-7L2 9.2l7.1-.6L12 2z"
-          />
-        </svg>
-        <svg
-          class="w-5 h-5 text-brand-500"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path
-            d="M12 2l2.9 6.6 7.1.6-5.4 4.6 1.7 7-6.3-3.9L5.7 21l1.7-7L2 9.2l7.1-.6L12 2z"
-          />
-        </svg>
-        <svg
-          class="w-5 h-5 text-brand-500"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path
-            d="M12 2l2.9 6.6 7.1.6-5.4 4.6 1.7 7-6.3-3.9L5.7 21l1.7-7L2 9.2l7.1-.6L12 2z"
-          />
-        </svg>
-        <svg
-          class="w-5 h-5 text-brand-500"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path
-            d="M12 2l2.9 6.6 7.1.6-5.4 4.6 1.7 7-6.3-3.9L5.7 21l1.7-7L2 9.2l7.1-.6L12 2z"
-          />
-        </svg>
-      </div>
-      <h2 class="font-display font-black text-2xl text-brand-900 mb-5">
+      <h2 class="font-display font-black text-2xl text-brand-900 mb-6">
         Veja o que dizem sobre a gente
       </h2>
+      <div class="relative max-w-md mx-auto mb-8">
+        <div
+          id="testimonial-carousel"
+          class="overflow-hidden rounded-2xl"
+        ></div>
+        <div
+          class="flex justify-center gap-1.5 mt-4"
+          id="testimonial-dots"
+        ></div>
+      </div>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a
           href="https://g.page/r/ChIJ1xUqeZBpIZUROd3tmas9LNo/review"
@@ -785,6 +748,7 @@
       </button>
     </div>
 
+    <script src="assets/data/testimonials.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
