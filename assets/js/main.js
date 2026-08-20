@@ -14,21 +14,38 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: true },
   );
 
-  const fabToggle = document.getElementById("wa-fab-toggle");
-  const fabMenu = document.getElementById("wa-fab-menu");
-  if (fabToggle && fabMenu) {
-    fabToggle.addEventListener("click", () => {
-      const isOpen = !fabMenu.classList.contains("hidden");
-      fabMenu.classList.toggle("hidden");
-      fabToggle.setAttribute("aria-expanded", String(!isOpen));
-    });
-    document.addEventListener("click", (e) => {
-      if (!fabMenu.contains(e.target) && !fabToggle.contains(e.target)) {
-        fabMenu.classList.add("hidden");
-        fabToggle.setAttribute("aria-expanded", "false");
+  document.querySelectorAll(".js-popover-toggle").forEach((toggle) => {
+    const menu = document.getElementById(toggle.dataset.target);
+    if (!menu) return;
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+      document
+        .querySelectorAll(".js-popover")
+        .forEach((m) => m.classList.add("hidden"));
+      document
+        .querySelectorAll(".js-popover-toggle")
+        .forEach((t) => t.setAttribute("aria-expanded", "false"));
+      if (!isOpen) {
+        menu.classList.remove("hidden");
+        toggle.setAttribute("aria-expanded", "true");
       }
     });
-  }
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".js-popover") &&
+      !e.target.closest(".js-popover-toggle")
+    ) {
+      document
+        .querySelectorAll(".js-popover")
+        .forEach((m) => m.classList.add("hidden"));
+      document
+        .querySelectorAll(".js-popover-toggle")
+        .forEach((t) => t.setAttribute("aria-expanded", "false"));
+    }
+  });
 
   const SCHEDULES = {
     1: [

@@ -333,18 +333,38 @@
             </svg>
             Nossas unidades
           </a>
-          <a
-            href="go/google.html"
-            id="cta-whatsapp"
-            class="js-wa-cta inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp-dark text-white text-sm font-bold px-4 py-2.5 rounded-2xl shadow-sm transition active:scale-95"
-          >
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.28-1.38a9.9 9.9 0 004.71 1.2h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"
-              />
-            </svg>
-            WhatsApp
-          </a>
+          <div class="relative">
+            <button
+              type="button"
+              id="cta-whatsapp"
+              aria-expanded="false"
+              aria-haspopup="true"
+              class="js-popover-toggle inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp-dark text-white text-sm font-bold px-4 py-2.5 rounded-2xl shadow-sm transition active:scale-95"
+              data-target="nav-wa-menu"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.28-1.38a9.9 9.9 0 004.71 1.2h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2z"
+                />
+              </svg>
+              WhatsApp
+            </button>
+            <div
+              id="nav-wa-menu"
+              class="js-popover hidden absolute right-0 mt-2 flex flex-col gap-1 bg-white shadow-lg border border-brand-100 rounded-2xl p-2 min-w-[180px] z-50"
+            >
+              <a
+                href="go/google.html"
+                class="js-wa-cta text-sm font-semibold text-brand-800 hover:bg-brand-50 px-3 py-2 rounded-xl transition"
+                >Unidade KM 60</a
+              >
+              <a
+                href="go/google-unidade-2.html"
+                class="js-wa-cta text-sm font-semibold text-brand-800 hover:bg-brand-50 px-3 py-2 rounded-xl transition"
+                >Unidade Morrotes</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -1070,21 +1090,99 @@
           id="testimonial-dots"
         ></div>
       </div>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a
-          href="https://g.page/r/ChIJ1xUqeZBpIZUROd3tmas9LNo/review"
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-2 border-2 border-brand-600 text-brand-700 hover:bg-brand-50 font-bold px-6 py-3 rounded-2xl transition active:scale-95"
-          >Avaliações - Unidade KM 60</a
-        >
-        <a
-          href="https://g.page/r/ChIJUeFkuIlCIZURFU1WygUyU_0/review"
-          target="_blank"
-          rel="noopener"
-          class="inline-flex items-center gap-2 border-2 border-brand-600 text-brand-700 hover:bg-brand-50 font-bold px-6 py-3 rounded-2xl transition active:scale-95"
-          >Avaliações - Unidade Morrotes</a
-        >
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <div class="relative inline-flex items-center gap-2">
+          <a
+            href="https://g.page/r/CRVNVsoFMlP9EBI/review"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 border-2 border-brand-600 text-brand-700 hover:bg-brand-50 font-bold px-6 py-3 rounded-2xl transition active:scale-95"
+            >Avaliações - Unidade KM 60</a
+          >
+          <button
+            type="button"
+            aria-label="Mostrar QR code para avaliação - Unidade KM 60"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="js-popover-toggle w-11 h-11 shrink-0 flex items-center justify-center rounded-xl border-2 border-brand-600 text-brand-700 hover:bg-brand-50 transition active:scale-95"
+            data-target="qr-popover-km60"
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <path
+                stroke-linecap="round"
+                d="M14 14h3m4 0h0M14 18h3m-3 3h3m4-7v7"
+              />
+            </svg>
+          </button>
+          <div
+            id="qr-popover-km60"
+            class="js-popover hidden absolute z-20 top-full mt-2 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-brand-100 p-3"
+          >
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fg.page%2Fr%2FCRVNVsoFMlP9EBI%2Freview"
+              width="180"
+              height="180"
+              loading="lazy"
+              alt="QR code para avaliação Google - Unidade KM 60"
+              class="rounded-lg"
+            />
+          </div>
+        </div>
+        <div class="relative inline-flex items-center gap-2">
+          <a
+            href="https://g.page/r/CRVNVsoFMlP9EBI/review"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 border-2 border-brand-600 text-brand-700 hover:bg-brand-50 font-bold px-6 py-3 rounded-2xl transition active:scale-95"
+            >Avaliações - Unidade Morrotes</a
+          >
+          <button
+            type="button"
+            aria-label="Mostrar QR code para avaliação - Unidade Morrotes"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="js-popover-toggle w-11 h-11 shrink-0 flex items-center justify-center rounded-xl border-2 border-brand-600 text-brand-700 hover:bg-brand-50 transition active:scale-95"
+            data-target="qr-popover-morrotes"
+          >
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <path
+                stroke-linecap="round"
+                d="M14 14h3m4 0h0M14 18h3m-3 3h3m4-7v7"
+              />
+            </svg>
+          </button>
+          <div
+            id="qr-popover-morrotes"
+            class="js-popover hidden absolute z-20 top-full mt-2 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl border border-brand-100 p-3"
+          >
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https%3A%2F%2Fg.page%2Fr%2FCRVNVsoFMlP9EBI%2Freview"
+              width="180"
+              height="180"
+              loading="lazy"
+              alt="QR code para avaliação Google - Unidade Morrotes"
+              class="rounded-lg"
+            />
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1260,8 +1358,21 @@
           class="hover:text-white"
           >Facebook</a
         >
-        <a href="go/google.html" aria-label="Google" class="hover:text-white"
-          >Google</a
+        <a
+          href="https://g.page/r/CRVNVsoFMlP9EBI/review"
+          target="_blank"
+          rel="noopener"
+          aria-label="Avaliações Google - Unidade KM 60"
+          class="hover:text-white"
+          >Google KM 60</a
+        >
+        <a
+          href="https://g.page/r/CRVNVsoFMlP9EBI/review"
+          target="_blank"
+          rel="noopener"
+          aria-label="Avaliações Google - Unidade Morrotes"
+          class="hover:text-white"
+          >Google Morrotes</a
         >
       </div>
       <p class="mb-1">Farmácias Santa Luzia Ltda</p>
@@ -1376,7 +1487,10 @@
     </nav>
 
     <div class="fixed right-4 md:right-6 bottom-24 md:bottom-6 z-50">
-      <div id="wa-fab-menu" class="hidden mb-3 flex flex-col gap-2 items-end">
+      <div
+        id="wa-fab-menu"
+        class="js-popover hidden mb-3 flex flex-col gap-2 items-end"
+      >
         <a
           href="go/google.html"
           class="js-wa-cta flex items-center gap-2 bg-white shadow-lg border border-brand-100 text-brand-800 text-sm font-bold pl-4 pr-2 py-2 rounded-full whitespace-nowrap"
@@ -1410,9 +1524,11 @@
       </div>
       <button
         id="wa-fab-toggle"
+        type="button"
         aria-expanded="false"
-        aria-controls="wa-fab-menu"
-        class="w-14 h-14 rounded-full bg-whatsapp hover:bg-whatsapp-dark text-white shadow-xl flex items-center justify-center transition active:scale-95"
+        aria-haspopup="true"
+        class="js-popover-toggle w-14 h-14 rounded-full bg-whatsapp hover:bg-whatsapp-dark text-white shadow-xl flex items-center justify-center transition active:scale-95"
+        data-target="wa-fab-menu"
       >
         <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
           <path
