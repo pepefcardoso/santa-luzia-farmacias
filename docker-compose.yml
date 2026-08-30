@@ -1,0 +1,40 @@
+services:
+  web:
+    build: .
+    container_name: santaluzia-web
+    restart: unless-stopped
+    mem_limit: 512m
+    networks:
+      - traefik-public
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.santaluzia.rule=Host(`santaluziafarmacias.com.br`)"
+      - "traefik.http.routers.santaluzia.entrypoints=websecure"
+      - "traefik.http.routers.santaluzia.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.santaluzia.middlewares=security-headers@file"
+      - "traefik.http.routers.santaluzia.service=santaluzia"
+      - "traefik.http.services.santaluzia.loadbalancer.server.port=3000"
+      - "traefik.http.routers.santaluzia-www.rule=Host(`www.santaluziafarmacias.com.br`)"
+      - "traefik.http.routers.santaluzia-www.entrypoints=websecure"
+      - "traefik.http.routers.santaluzia-www.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.santaluzia-www.service=santaluzia"
+      - "traefik.http.routers.santaluzia-www.middlewares=santaluzia-www-redirect"
+      - "traefik.http.middlewares.santaluzia-www-redirect.redirectregex.regex=^https://www\\.santaluziafarmacias\\.com\\.br/(.*)"
+      - "traefik.http.middlewares.santaluzia-www-redirect.redirectregex.replacement=https://santaluziafarmacias.com.br/$${1}"
+      - "traefik.http.middlewares.santaluzia-www-redirect.redirectregex.permanent=true"
+
+networks:
+  traefik-public:
+    external: true
