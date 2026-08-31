@@ -54,7 +54,7 @@ export default function HeroSection() {
         </div>
 
         <div className="relative">
-          <div className="rounded-2xl overflow-hidden shadow-xl h-72 sm:h-96 md:h-full relative">
+          <div className="rounded-2xl overflow-hidden shadow-xl h-80 sm:h-96 relative bg-brand-100">
             <Image
               src="/img/hero-farmacia.jpg"
               alt="Farmacêutico da Santa Luzia preparando medicamento"
