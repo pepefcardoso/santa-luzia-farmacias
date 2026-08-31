@@ -1,45 +1,51 @@
 "use client";
-
 import { useEffect, useState } from "react";
-import { SCHEDULE, UnitId } from "@/lib/data";
+import { SCHEDULE, UnitId, DaySchedule } from "@/lib/data";
 
-function isOpenNow(unit: UnitId) {
-  const schedule = SCHEDULE[unit];
-  
-  if (!schedule || !Array.isArray(schedule)) return false; 
-  
-  const now = new Date();
-  const dow = now.getDay();
-  const minutes = now.getHours() * 60 + now.getMinutes();
-  
-  let rule;
-  
-  if (dow === 0) {
-    rule = schedule.find((r) => r.day === "Domingo");
-  } else if (dow === 6) {
-    rule = schedule.find((r) => r.day === "Sábado") || 
-           schedule.find((r) => r.day.toLowerCase().includes("sábado")) || 
-           schedule[0];
-  } else {
-    rule = schedule[0];
+function isOpenNow(unit: UnitId): boolean {
+  try {
+    const schedule = SCHEDULE[unit];
+    if (!schedule || !Array.isArray(schedule) || schedule.length === 0) return false;
+
+    const nowStr = new Date().toLocaleString("en-US", { timeZone: "America/Sao_Paulo" });
+    const now = new Date(nowStr);
+    
+    const dow = now.getDay();
+    const minutes = now.getHours() * 60 + now.getMinutes();
+
+    let rule: DaySchedule | undefined;
+    
+    if (dow === 0) {
+      rule = schedule.find((r) => r.day.toLowerCase().includes("domingo"));
+    } else if (dow === 6) {
+      rule = schedule.find((r) => {
+        const normalized = r.day.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return normalized.includes("sabado");
+      }) || schedule[0];
+    } else {
+      rule = schedule[0];
+    }
+
+    if (!rule || !Array.isArray(rule.ranges)) return false;
+
+    return rule.ranges.some(([open, close]) => minutes >= open && minutes < close);
+    
+  } catch (error) {
+    console.error("Erro ao calcular horário de funcionamento:", error);
+    return false;
   }
-  
-  if (!rule || !Array.isArray(rule.ranges)) return false;
-  
-  return rule.ranges.some(([open, close]) => minutes >= open && minutes < close);
 }
 
 export default function OpenBadge({ unitId, className = "" }: { unitId: UnitId, className?: string }) {
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(isOpenNow(unitId));
-    
+
     const interval = setInterval(() => {
       setIsOpen(isOpenNow(unitId));
     }, 60000);
-    
+
     return () => clearInterval(interval);
   }, [unitId]);
 
@@ -47,7 +53,7 @@ export default function OpenBadge({ unitId, className = "" }: { unitId: UnitId, 
     return (
       <span className={`inline-flex items-center gap-1.5 text-sm font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-500 ${className}`}>
         <span className="w-2 h-2 rounded-full bg-gray-400"></span>
-        <span>Verificando horário…</span>
+        <span>Verificando horário...</span>
       </span>
     );
   }
