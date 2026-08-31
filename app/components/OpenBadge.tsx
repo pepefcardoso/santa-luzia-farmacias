@@ -4,22 +4,27 @@ import { useEffect, useState } from "react";
 import { SCHEDULE, UnitId } from "@/lib/data";
 
 function isOpenNow(unit: UnitId) {
+  const schedule = SCHEDULE[unit];
+  
+  if (!schedule || !Array.isArray(schedule)) return false; 
+  
   const now = new Date();
   const dow = now.getDay();
   const minutes = now.getHours() * 60 + now.getMinutes();
   
-  const schedule = SCHEDULE[unit];
   let rule;
   
   if (dow === 0) {
     rule = schedule.find((r) => r.day === "Domingo");
   } else if (dow === 6) {
-    rule = schedule.find((r) => r.day === "Sábado") || schedule.find((r) => r.day.includes("sábado")) || schedule[0];
+    rule = schedule.find((r) => r.day === "Sábado") || 
+           schedule.find((r) => r.day.toLowerCase().includes("sábado")) || 
+           schedule[0];
   } else {
     rule = schedule[0];
   }
   
-  if (!rule) return false;
+  if (!rule || !Array.isArray(rule.ranges)) return false;
   
   return rule.ranges.some(([open, close]) => minutes >= open && minutes < close);
 }
@@ -28,11 +33,9 @@ export default function OpenBadge({ unitId, className = "" }: { unitId: UnitId, 
   const [isOpen, setIsOpen] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Initial check
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(isOpenNow(unitId));
     
-    // Check every minute
     const interval = setInterval(() => {
       setIsOpen(isOpenNow(unitId));
     }, 60000);
