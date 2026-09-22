@@ -1,6 +1,5 @@
-"use client";
-
 import { SCHEDULE, UNITS } from "@/lib/data";
+import { isUnitOpenNow } from "@/lib/schedule";
 import OpenBadge from "./OpenBadge";
 
 export default function HoursSection() {
@@ -23,12 +22,21 @@ export default function HoursSection() {
                 <h3 className="font-display font-bold text-brand-900">
                   {unit.name}
                 </h3>
-                <OpenBadge unitId={unit.id} className="text-xs" />
+                <OpenBadge
+                  unitId={unit.id}
+                  initialOpen={isUnitOpenNow(unit.id)}
+                  className="text-xs"
+                />
               </div>
               <div className="bg-brand-50 rounded-2xl overflow-hidden border border-brand-100 divide-y divide-brand-100">
                 {SCHEDULE[unit.id].map((s, index) => (
-                  <div key={index} className="flex justify-between items-center px-5 py-4 text-sm">
-                    <span className="font-semibold text-brand-900">{s.day}</span>
+                  <div
+                    key={index}
+                    className="flex justify-between items-center px-5 py-4 text-sm"
+                  >
+                    <span className="font-semibold text-brand-900">
+                      {s.day}
+                    </span>
                     <span className="text-brand-600 font-bold">{s.label}</span>
                   </div>
                 ))}

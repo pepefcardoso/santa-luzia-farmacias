@@ -14,6 +14,8 @@ import Footer from "./components/Footer";
 import MobileNav from "./components/MobileNav";
 import WhatsAppFab from "./components/WhatsAppFab";
 
+export const revalidate = 60;
+
 export default function Home() {
   return (
     <>

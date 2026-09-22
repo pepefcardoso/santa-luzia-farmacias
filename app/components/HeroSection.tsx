@@ -8,7 +8,7 @@ export default function HeroSection() {
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
         <div className="text-center md:text-left">
           <div className="flex justify-center md:justify-start mb-4">
-            <OpenBadge unitId={1} />
+            <OpenBadge unitId={1} initialOpen={isUnitOpenNow(1)} />
           </div>
           <h1 className="font-display font-black text-4xl sm:text-5xl text-brand-900 leading-[1.1] mb-4">
             Farmácias Santa Luzia em{" "}
