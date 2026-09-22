@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import OpenBadge from "./OpenBadge";
+import { isUnitOpenNow } from "@/lib/schedule";
 
 export default function HeroSection() {
   return (
