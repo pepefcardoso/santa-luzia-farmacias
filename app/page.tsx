@@ -15,21 +15,21 @@ import MobileNav from "./components/MobileNav";
 import WhatsAppFab from "./components/WhatsAppFab";
 import fs from "fs/promises";
 import path from "path";
-import { ImageCarousel } from "./components/ImageCarousel";
+import { CampaignGallery } from "./components/CampaignGallery";
 
 export const revalidate = 60;
 
 export default async function Home() {
-  const carouselDir = path.join(process.cwd(), "public", "img", "carousel");
-  let carouselImages: string[] = [];
+  const galleryDir = path.join(process.cwd(), "public", "img", "gallery");
+  let galleryImages: string[] = [];
 
   try {
-    const files = await fs.readdir(carouselDir);
-    carouselImages = files.filter((file) =>
+    const files = await fs.readdir(galleryDir);
+    galleryImages = files.filter((file) =>
       /\.(jpg|jpeg|png|webp|avif)$/i.test(file),
     );
   } catch (error) {
-    console.error("Carousel directory not found or unreadable.", error);
+    console.error("Gallery directory not found or unreadable.", error);
   }
 
   return (
@@ -37,9 +37,9 @@ export default async function Home() {
       <Header />
       <main>
         <HeroSection />
-        {carouselImages.length > 0 && (
+        {galleryImages.length > 0 && (
           <section className="py-8">
-            <ImageCarousel images={carouselImages} />
+            <CampaignGallery images={galleryImages} />
           </section>
         )}
         <WhyUsSection />
