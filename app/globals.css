@@ -47,7 +47,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Mobile bottom nav padding override in legacy style.css: */
 @media (max-width: 767px) {
   body {
     padding-bottom: 5rem;

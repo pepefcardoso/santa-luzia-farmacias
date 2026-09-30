@@ -13,15 +13,35 @@ import ApoioSection from "./components/ApoioSection";
 import Footer from "./components/Footer";
 import MobileNav from "./components/MobileNav";
 import WhatsAppFab from "./components/WhatsAppFab";
+import fs from "fs/promises";
+import path from "path";
+import { ImageCarousel } from "./components/ImageCarousel";
 
 export const revalidate = 60;
 
-export default function Home() {
+export default async function Home() {
+  const carouselDir = path.join(process.cwd(), "public", "img", "carousel");
+  let carouselImages: string[] = [];
+
+  try {
+    const files = await fs.readdir(carouselDir);
+    carouselImages = files.filter((file) =>
+      /\.(jpg|jpeg|png|webp|avif)$/i.test(file),
+    );
+  } catch (error) {
+    console.error("Carousel directory not found or unreadable.", error);
+  }
+
   return (
     <>
       <Header />
       <main>
         <HeroSection />
+        {carouselImages.length > 0 && (
+          <section className="py-8">
+            <ImageCarousel images={carouselImages} />
+          </section>
+        )}
         <WhyUsSection />
         <ServicesSection />
         <HoursSection />

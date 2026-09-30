@@ -15,7 +15,6 @@ export default function Header() {
       setIsScrolled(window.scrollY > 8);
     };
     
-    // Initial check
     handleScroll();
     
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -94,7 +93,6 @@ export default function Header() {
               WhatsApp
             </button>
             
-            {/* Popover Menu */}
             {isMenuOpen && (
               <div
                 ref={menuRef}

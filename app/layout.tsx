@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "Farmácias Santa Luzia",
     images: [
       {
-        url: "/img/og-cover.jpg", // Note: you might need to copy this image if it doesn't exist, but legacy used this URL
+        url: "/img/og-cover.jpg",
       },
     ],
     locale: "pt_BR",
